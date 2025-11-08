@@ -31,6 +31,35 @@ h2 { color: #4682b4; }
     border-radius: 10px;
 }
 
+/* --- 新增：难度选择样式 --- */
+.level-selector {
+    margin: 20px 0;
+    font-size: 1.1em;
+}
+
+.level-selector p {
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.radio-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.radio-group input[type="radio"] {
+    margin-right: 8px;
+    /* 放大单选按钮 */
+    transform: scale(1.2);
+}
+
+.radio-group label {
+    cursor: pointer;
+}
+/* --- 样式新增结束 --- */
+
 .start-btn, .play-again-btn {
     padding: 15px 30px;
     font-size: 1.2em;
@@ -42,6 +71,7 @@ h2 { color: #4682b4; }
     text-decoration: none;
     display: inline-block;
     transition: background-color 0.3s;
+    margin-top: 10px; /* 增加一点上边距 */
 }
 .start-btn:hover { background-color: #28a745; }
 
@@ -57,22 +87,18 @@ h2 { color: #4682b4; }
 #lives { text-align: left; }
 #score { text-align: right; }
 
-/* --- 心心样式最终版 --- */
 #lives span {
-    transition: transform 0.2s ease; /* 保留缩放动画的平滑过渡 */
+    transition: transform 0.2s ease;
     display: inline-block;
 }
 
-/* 红心样式 */
 #lives span.full-heart {
     color: red;
 }
 
-/* 灰心样式 (作用于 ♡ 符号) */
 #lives span.empty-heart {
-    color: #ddd; /* 灰色 */
+    color: #ddd;
 }
-
 
 .feedback-animation {
     position: absolute;
@@ -103,9 +129,7 @@ h2 { color: #4682b4; }
 
 #pinyin-input { width: 80%; padding: 15px; font-size: 1.5em; text-align: center; border: 2px solid #ccc; border-radius: 10px; margin-bottom: 20px; }
 #pinyin-input:focus { outline: none; border-color: #ff6347; }
-#skip-btn { padding: 10px 20px; font-size: 1em; border: none; background-color: #ffc107; color: white; border-radius: 8px; cursor: pointer; }
 
-/* Result Page Styles */
 .mistake-table { width: 100%; margin-top: 20px; border-collapse: collapse; }
 .mistake-table th, .mistake-table td { border: 1px solid #ddd; padding: 12px; }
 .mistake-table th { background-color: #f2f2f2; }
@@ -113,7 +137,6 @@ h2 { color: #4682b4; }
 .correct-pinyin { color: #32cd32; font-weight: bold; }
 .wrong-attempt { background-color: #ffdddd; color: #d8000c; padding: 2px 6px; border-radius: 4px; margin: 0 2px; display: inline-block; }
 
-/* 低血量动画，只作用于红心 */
 #lives.low-health span.full-heart { 
     animation: pulse 1s infinite; 
 } 

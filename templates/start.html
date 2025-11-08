@@ -11,6 +11,20 @@
         <p>一个学习拼音的网页小游戏</p>
         <form action="{{ url_for('start_game') }}" method="post">
             <input type="text" name="player_name" placeholder="请输入你的名字" class="name-input" required>
+            
+            <!-- 新增：难度选择 -->
+            <div class="level-selector">
+                <p>请选择你的年级：</p>
+                <div class="radio-group">
+                    <input type="radio" id="level-easy" name="level" value="easy" checked>
+                    <label for="level-easy">六年级及以下</label>
+                </div>
+                <div class="radio-group">
+                    <input type="radio" id="level-hard" name="level" value="hard">
+                    <label for="level-hard">六年级以上</label>
+                </div>
+            </div>
+
             <button type="submit" class="start-btn">开始挑战！</button>
         </form>
     </div>

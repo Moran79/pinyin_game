@@ -12,7 +12,8 @@
             <div id="lives" class="stat-item">
                 <!-- JavaScript会填充这里 -->
             </div>
-            <div id="score" class="stat-item">得分: {{ session.score }} / 10</div>
+            <!-- 修改：动态显示目标分数 -->
+            <div id="score" class="stat-item">得分: {{ session.score }} / {{ target_score }}</div>
             <div id="feedback" class="feedback-animation"></div>
         </div>
         
@@ -26,7 +27,7 @@
                    autocomplete="off" autofocus inputmode="latin">
         </div>
 
-        <button id="skip-btn">跳过这个词 (扣1颗心)</button>
+        <!-- 修改：移除了跳过按钮 -->
     </div>
 
     <!-- 将初始数据传递给JavaScript -->
@@ -34,7 +35,9 @@
         const initialGameState = {
             lives: {{ session.lives }},
             score: {{ session.score }},
-            word_info: {{ session.current_word_info | tojson }}
+            word_info: {{ session.current_word_info | tojson }},
+            totalLives: {{ initial_lives }},
+            targetScore: {{ target_score }}
         };
     </script>
     <script src="{{ url_for('static', filename='script.js') }}"></script>
