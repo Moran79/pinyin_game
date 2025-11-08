@@ -1,0 +1,124 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f8ff;
+    color: #333;
+    margin: 0;
+}
+
+.start-container, .game-container, .result-container {
+    text-align: center;
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    width: 90%;
+    max-width: 500px;
+}
+
+h1 { color: #ff6347; margin-bottom: 20px; }
+h2 { color: #4682b4; }
+
+.name-input {
+    width: 80%;
+    padding: 15px;
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+}
+
+.start-btn, .play-again-btn {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    border: none;
+    background-color: #32cd32;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s;
+}
+.start-btn:hover { background-color: #28a745; }
+
+.stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.5em;
+    margin-bottom: 30px;
+    position: relative;
+}
+.stat-item { flex: 1; }
+#lives { text-align: left; }
+#score { text-align: right; }
+
+/* --- 心心样式最终版 --- */
+#lives span {
+    transition: transform 0.2s ease; /* 保留缩放动画的平滑过渡 */
+    display: inline-block;
+}
+
+/* 红心样式 */
+#lives span.full-heart {
+    color: red;
+}
+
+/* 灰心样式 (作用于 ♡ 符号) */
+#lives span.empty-heart {
+    color: #ddd; /* 灰色 */
+}
+
+
+.feedback-animation {
+    position: absolute;
+    left: 20px;
+    top: -10px;
+    font-size: 1.2em;
+    color: #dc143c;
+    font-weight: bold;
+    opacity: 0;
+    transition: all 1.5s ease-out;
+}
+.feedback-animation.show {
+    opacity: 1;
+    transform: translateY(-40px);
+}
+
+.word-display { margin-bottom: 30px; display: flex; justify-content: center; gap: 20px; }
+.char-box { font-size: 5em; padding: 20px; border: 4px solid #ccc; border-radius: 10px; width: 100px; height: 100px; display: flex; justify-content: center; align-items: center; transition: all 0.3s ease; }
+.char-box.highlight { border-color: #ff6347; transform: scale(1.1); }
+.char-box.correct { border-color: #32cd32; background-color: #f0fff0; }
+.char-box.incorrect { border-color: #dc143c; animation: shake 0.5s; }
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0) scale(1.1); }
+    25% { transform: translateX(-10px) scale(1.1); }
+    75% { transform: translateX(10px) scale(1.1); }
+}
+
+#pinyin-input { width: 80%; padding: 15px; font-size: 1.5em; text-align: center; border: 2px solid #ccc; border-radius: 10px; margin-bottom: 20px; }
+#pinyin-input:focus { outline: none; border-color: #ff6347; }
+#skip-btn { padding: 10px 20px; font-size: 1em; border: none; background-color: #ffc107; color: white; border-radius: 8px; cursor: pointer; }
+
+/* Result Page Styles */
+.mistake-table { width: 100%; margin-top: 20px; border-collapse: collapse; }
+.mistake-table th, .mistake-table td { border: 1px solid #ddd; padding: 12px; }
+.mistake-table th { background-color: #f2f2f2; }
+.char-cell { font-size: 2em; font-weight: bold; }
+.correct-pinyin { color: #32cd32; font-weight: bold; }
+.wrong-attempt { background-color: #ffdddd; color: #d8000c; padding: 2px 6px; border-radius: 4px; margin: 0 2px; display: inline-block; }
+
+/* 低血量动画，只作用于红心 */
+#lives.low-health span.full-heart { 
+    animation: pulse 1s infinite; 
+} 
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.2); opacity: 0.7; }
+}

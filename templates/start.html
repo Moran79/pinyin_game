@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>准备开始 - 拼音小达人</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="start-container">
+        <h1>拼音小达人</h1>
+        <p>一个学习拼音的网页小游戏</p>
+        <form action="{{ url_for('start_game') }}" method="post">
+            <input type="text" name="player_name" placeholder="请输入你的名字" class="name-input" required>
+            <button type="submit" class="start-btn">开始挑战！</button>
+        </form>
+    </div>
+</body>
+</html>

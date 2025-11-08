@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>游戏中 - {{ session.player_name }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="game-container">
+        <h1>加油, {{ session.player_name }}!</h1>
+        <div class="stats">
+            <div id="lives" class="stat-item">
+                <!-- JavaScript会填充这里 -->
+            </div>
+            <div id="score" class="stat-item">得分: {{ session.score }} / 10</div>
+            <div id="feedback" class="feedback-animation"></div>
+        </div>
+        
+        <div class="word-display">
+            <span id="char1" class="char-box highlight">{{ session.current_word_info.word[0] }}</span>
+            <span id="char2" class="char-box">{{ session.current_word_info.word[1] }}</span>
+        </div>
+
+        <div class="input-area">
+            <input type="text" id="pinyin-input" placeholder="在这里输入拼音 (用v代替ü)" 
+                   autocomplete="off" autofocus inputmode="latin">
+        </div>
+
+        <button id="skip-btn">跳过这个词 (扣1颗心)</button>
+    </div>
+
+    <!-- 将初始数据传递给JavaScript -->
+    <script>
+        const initialGameState = {
+            lives: {{ session.lives }},
+            score: {{ session.score }},
+            word_info: {{ session.current_word_info | tojson }}
+        };
+    </script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

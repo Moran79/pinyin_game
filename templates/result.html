@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>游戏结果</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="result-container">
+        {% if session.score >= 10 %}
+            <h1>太棒了, {{ session.player_name }}！挑战成功！</h1>
+            <p class="final-score">你完成了10个词语的挑战！</p>
+        {% else %}
+            <h1>很遗憾, {{ session.player_name }}！挑战失败！</h1>
+            <p class="final-score">下次继续努力哦！你的得分是: {{ session.score }}</p>
+        {% endif %}
+
+        {% if session.mistakes %}
+            <h2>你的专属错题本：</h2>
+            <table class="mistake-table">
+                <thead>
+                    <tr>
+                        <th>汉字</th>
+                        <th>正确拼音</th>
+                        <th>你的错误尝试</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for mistake in session.mistakes %}
+                    <tr>
+                        <td class="char-cell">{{ mistake.char }}</td>
+                        <td class="correct-pinyin">{{ mistake.correct }}</td>
+                        <td>
+                            {% for attempt in mistake.attempts %}
+                                <span class="wrong-attempt">{{ attempt }}</span>
+                            {% endfor %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            {% if session.score >= 10 %}
+            <p>你真是个天才，一个错误都没有！</p>
+            {% endif %}
+        {% endif %}
+        
+        <a href="{{ url_for('start_page') }}" class="play-again-btn">换个小朋友或重新开始</a>
+    </div>
+</body>
+</html>
